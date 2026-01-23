@@ -55,6 +55,10 @@ A collection of plugins for Claude Code.
 | ui-ux-pro-max-skill | UI/UX | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 | skills.sh | Community | https://skills.sh |
 
+### Example & Screenshots
+
+<img width="1000" height="460" alt="2026-01-23" src="https://github.com/user-attachments/assets/41783008-4d9d-44fd-95d0-e8a58fb7166d" />
+
 ## License
 
 MIT
