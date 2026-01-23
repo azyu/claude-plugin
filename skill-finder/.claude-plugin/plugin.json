@@ -1,0 +1,10 @@
+{
+  "name": "skill-finder",
+  "description": "Analyze projects and find relevant AI skills from GitHub and skills.sh",
+  "version": "1.0.0",
+  "author": {
+    "name": "azyu"
+  },
+  "repository": "https://github.com/azyu/claude-plugin",
+  "license": "MIT"
+}

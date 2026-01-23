@@ -1,0 +1,18 @@
+{
+  "name": "skill-finder",
+  "version": "1.0.0",
+  "description": "Claude Code plugin to analyze projects and find relevant AI skills",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "plugin",
+    "skills",
+    "ai"
+  ],
+  "author": "azyu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azyu/claude-plugin.git"
+  }
+}

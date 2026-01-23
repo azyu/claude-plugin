@@ -1,0 +1,11 @@
+{
+  "name": "claude-plugin",
+  "owner": { "name": "azyu" },
+  "plugins": [
+    {
+      "name": "skill-finder",
+      "source": "./skill-finder",
+      "description": "Analyze projects, search for AI skills, and install them"
+    }
+  ]
+}
