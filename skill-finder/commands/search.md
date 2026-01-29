@@ -47,12 +47,12 @@ For each recommended skill, provide:
 
 **Project scope (default)** - installs to `.claude/skills/`:
 ```bash
-npx skills add <owner/repo>
+npx add-skill <owner/repo> --skill <skill-name>
 ```
 
 **User scope** - installs to `~/.claude/skills/`:
 ```bash
-npx skills add <owner/repo> --global
+npx add-skill <owner/repo> --skill <skill-name> -g
 ```
 
 ## Category Quick Reference

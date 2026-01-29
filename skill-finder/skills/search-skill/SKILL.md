@@ -1,6 +1,6 @@
 ---
 name: search-skill
-description: Analyzes projects and searches for relevant AI skills. Provides tech stack analysis, skill recommendations, and installation guides.
+description: Analyzes projects and searches for relevant AI skills. Installs via npx add-skill. Provides tech stack analysis, skill recommendations, and installation guides.
 ---
 
 # Skill Search Agent

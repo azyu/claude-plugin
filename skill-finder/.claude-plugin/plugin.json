@@ -1,6 +1,6 @@
 {
   "name": "skill-finder",
-  "description": "Analyze projects and find relevant AI skills from GitHub and skills.sh",
+  "description": "Analyze projects and find relevant AI skills. Install via npx add-skill from GitHub and skills.sh",
   "version": "1.0.0",
   "author": {
     "name": "azyu"

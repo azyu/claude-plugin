@@ -48,6 +48,23 @@ A collection of plugins for Claude Code.
 | Project | `.claude/skills/` | Project-specific skills |
 | User | `~/.claude/skills/` | Global skills for all projects |
 
+### Installing Skills
+
+After skill-finder recommends skills, install them with `npx add-skill`:
+
+```bash
+# Project scope
+npx add-skill <owner/repo> --skill <skill-name>
+
+# User scope (global)
+npx add-skill <owner/repo> --skill <skill-name> -g
+```
+
+**Example:**
+```bash
+npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
+```
+
 ### Skill Sources
 
 | Source | Skills | URL |
