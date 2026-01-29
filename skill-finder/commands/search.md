@@ -87,18 +87,36 @@ After presenting recommendations, use `AskUserQuestion` to ask:
 
 ### 5. Execute Installation
 
-If user selects a skill, run the appropriate installation command based on scope:
+If user selects a skill, execute the appropriate installation command:
 
-**Project scope:**
+**Try npx add-skill first:**
 ```bash
-mkdir -p .claude/skills/<skill-name>
-# ... clone and copy skill files
+# Project scope
+npx add-skill <owner/repo> --skill <skill-name>
+
+# User scope
+npx add-skill <owner/repo> --skill <skill-name> -g
 ```
 
-**User scope:**
+**If npx fails (TTY error, etc.), use manual fallback:**
 ```bash
+# 1. Clone repo
+git clone --depth 1 https://github.com/<owner>/<repo>.git /tmp/<repo>
+
+# 2. Find skill (directory structure varies!)
+find /tmp/<repo> -type d -name "<skill-name>" 2>/dev/null
+
+# 3. Copy to target
+# Project scope:
+mkdir -p .claude/skills/<skill-name>
+cp -r <found-path>/* .claude/skills/<skill-name>/
+
+# User scope:
 mkdir -p ~/.claude/skills/<skill-name>
-# ... clone and copy skill files
+cp -r <found-path>/* ~/.claude/skills/<skill-name>/
+
+# 4. Cleanup
+rm -rf /tmp/<repo>
 ```
 
 ### 6. Confirm
