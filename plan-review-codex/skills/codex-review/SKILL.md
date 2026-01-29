@@ -7,32 +7,72 @@ description: Review implementation plans with OpenAI Codex. Provides feasibility
 
 You are an expert plan reviewer that leverages OpenAI Codex for comprehensive implementation plan analysis.
 
-## Your Tasks
+## Execution Steps
 
-### 1. Execute Review Script
+### Step 1: Parse Arguments
 
-Run the plan review script with user-provided arguments:
+Check `$ARGUMENTS` for options:
+- `-f <file>` or `--file <file>`: Use specified plan file
+- `-m <model>` or `--model <model>`: Use different Codex model (default: gpt-5.2-codex)
+- First positional argument: Treat as file path
+
+### Step 2: Detect Plan File
+
+If no file specified in arguments, find the latest plan:
 
 ```bash
-<plugin-dir>/scripts/plan-review.sh $ARGUMENTS
+# Cross-platform: detect GNU vs BSD stat
+if stat --version &>/dev/null 2>&1; then
+  # GNU stat (Linux)
+  PLAN_FILE=$(find ~/.claude/plans -maxdepth 1 -name "*.md" -type f -exec stat -c '%Y %n' {} \; 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+else
+  # BSD stat (macOS)
+  PLAN_FILE=$(find ~/.claude/plans -maxdepth 1 -name "*.md" -type f -exec stat -f '%m %N' {} \; 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+fi
+echo "Auto-detected plan: $PLAN_FILE"
 ```
 
-**Script behavior:**
-- No args: Auto-detects latest `.md` file from `~/.claude/plans/`
-- `-f <file>`: Uses specified plan file
-- `-m <model>`: Uses different Codex model (default: gpt-5.2-codex)
+If a file was explicitly provided, use that instead.
 
-### 2. Handle Prerequisites
+### Step 3: Verify Prerequisites
 
-If Codex CLI is not installed, the script will show:
-```
-Error: OpenAI Codex CLI is not installed.
-To install: npm install -g @openai/codex && codex auth
+Check Codex CLI installation:
+
+```bash
+command -v codex &>/dev/null || { echo "Error: OpenAI Codex CLI not installed. To install: npm install -g @openai/codex && codex auth"; exit 1; }
 ```
 
-Guide user to install and authenticate if needed.
+Verify plan file exists:
 
-### 3. Present Results
+```bash
+[[ -f "$PLAN_FILE" ]] || { echo "Error: Plan file not found: $PLAN_FILE"; exit 1; }
+```
+
+### Step 4: Execute Codex Review
+
+Build and execute the review command:
+
+```bash
+MODEL="${MODEL:-gpt-5.2-codex}"
+REASONING_FLAG=""
+[[ "$MODEL" == "gpt-5.2-codex" ]] && REASONING_FLAG="-c model_reasoning_effort=high"
+
+PROMPT="Please provide a comprehensive review of the following implementation plan:
+
+1. **Feasibility**: Is this technically feasible? What are the potential issues or risks?
+2. **Missing Items**: Are there any missing steps or considerations?
+3. **Alternatives**: Are there better approaches or improvements to suggest?
+
+Plan file: $PLAN_FILE
+
+---
+$(cat "$PLAN_FILE")
+---"
+
+codex exec -m "$MODEL" $REASONING_FLAG --dangerously-bypass-approvals-and-sandbox "$PROMPT"
+```
+
+### Step 5: Present Results
 
 Codex reviews the plan from three perspectives:
 
@@ -40,7 +80,7 @@ Codex reviews the plan from three perspectives:
 2. **Missing Items** - Gaps or missing steps in the plan
 3. **Alternatives** - Better approaches or improvements
 
-### 4. Guide Next Steps
+### Step 6: Guide Next Steps
 
 After review, suggest:
 - Update plan based on Codex feedback
