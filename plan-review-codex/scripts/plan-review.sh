@@ -8,10 +8,19 @@ REASONING="high"
 PLAN_FILE=""
 PLANS_DIR="$HOME/.claude/plans"
 
-# Find the most recently modified plan file
+# Find the most recently modified plan file (cross-platform)
 find_latest_plan() {
     if [[ -d "$PLANS_DIR" ]]; then
-        ls -t "$PLANS_DIR"/*.md 2>/dev/null | head -1
+        # Cross-platform: try GNU stat first, then BSD stat
+        if stat --version &>/dev/null; then
+            # GNU stat (Linux)
+            find "$PLANS_DIR" -maxdepth 1 -name "*.md" -type f -exec stat -c '%Y %n' {} \; 2>/dev/null | \
+                sort -rn | head -1 | cut -d' ' -f2-
+        else
+            # BSD stat (macOS)
+            find "$PLANS_DIR" -maxdepth 1 -name "*.md" -type f -exec stat -f '%m %N' {} \; 2>/dev/null | \
+                sort -rn | head -1 | cut -d' ' -f2-
+        fi
     fi
 }
 
@@ -60,25 +69,34 @@ if [[ -z "$PLAN_FILE" ]] || [[ ! -f "$PLAN_FILE" ]]; then
     exit 1
 fi
 
-# Read plan content
-PLAN_CONTENT=$(cat "$PLAN_FILE")
+# Create temporary file for the prompt
+TEMP_PROMPT=$(mktemp)
+trap 'rm -f "$TEMP_PROMPT"' EXIT
 
-# Review prompt
-REVIEW_PROMPT="Please provide a comprehensive review of the following implementation plan:
+# Write review prompt to temp file
+{
+    cat << 'PROMPT_HEADER'
+Please provide a comprehensive review of the following implementation plan:
 
 1. **Feasibility**: Is this technically feasible? What are the potential issues or risks?
 2. **Missing Items**: Are there any missing steps or considerations?
 3. **Alternatives**: Are there better approaches or improvements to suggest?
 
-Plan file: $PLAN_FILE
+PROMPT_HEADER
+    echo "Plan file: $PLAN_FILE"
+    echo ""
+    echo "---"
+    cat "$PLAN_FILE"
+    echo "---"
+} > "$TEMP_PROMPT"
 
----
-$PLAN_CONTENT
----"
+# Build codex command as array for safe argument handling
+CODEX_ARGS=("exec" "-m" "$MODEL")
+[[ -n "$REASONING" ]] && CODEX_ARGS+=("-c" "model_reasoning_effort=$REASONING")
+CODEX_ARGS+=("--dangerously-bypass-approvals-and-sandbox")
 
-# Execute Codex
-MODEL_OPTS="-m $MODEL"
-[[ -n "$REASONING" ]] && MODEL_OPTS="$MODEL_OPTS -c model_reasoning_effort=\"$REASONING\""
+# Read prompt content
+PROMPT_CONTENT=$(<"$TEMP_PROMPT")
 
 echo "Reviewing plan with Codex..."
-eval "codex exec $MODEL_OPTS --dangerously-bypass-approvals-and-sandbox \"$REVIEW_PROMPT\""
+codex "${CODEX_ARGS[@]}" "$PROMPT_CONTENT"

@@ -7,6 +7,7 @@ A collection of plugins for Claude Code.
 | Plugin | Description |
 |--------|-------------|
 | [skill-finder](./skill-finder) | Analyze projects, search for AI skills, and install them |
+| [plan-review-codex](./plan-review-codex) | Review implementation plans with OpenAI Codex Agent |
 
 ## Installation
 
@@ -58,6 +59,27 @@ A collection of plugins for Claude Code.
 ### Example & Screenshots
 
 <img width="1000" height="460" alt="2026-01-23" src="https://github.com/user-attachments/assets/41783008-4d9d-44fd-95d0-e8a58fb7166d" />
+
+## plan-review-codex Usage
+
+```bash
+/plan-review                                # Auto-detect latest plan from ~/.claude/plans/
+/plan-review -f ~/.claude/plans/my-plan.md  # Specify plan file
+/plan-review -m o3                          # Use different Codex model
+```
+
+### Review Perspectives
+
+1. **Feasibility** - Is it technically achievable? Any potential issues?
+2. **Missing Items** - Are there any missing steps or considerations?
+3. **Alternatives** - Are there better approaches or improvements?
+
+### Workflow
+
+1. Complete plan in Plan mode
+2. Run `/plan-review` to request Codex review
+3. Update plan based on feedback
+4. Request user approval with ExitPlanMode
 
 ## License
 

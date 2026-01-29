@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Claude Code plugin marketplace containing the **skill-finder** plugin that analyzes projects and searches for relevant AI skills from curated sources.
+This is a Claude Code plugin marketplace containing plugins:
+- **skill-finder**: Analyzes projects and searches for relevant AI skills from curated sources
+- **plan-review-codex**: Reviews implementation plans with OpenAI Codex Agent
 
 ## Architecture
 
@@ -12,7 +14,7 @@ This is a Claude Code plugin marketplace containing the **skill-finder** plugin 
 claude-plugin/
 ├── .claude-plugin/
 │   └── marketplace.json         # Marketplace manifest listing plugins
-├── skill-finder/                # Plugin directory
+├── skill-finder/                # Plugin: AI skill search
 │   ├── .claude-plugin/
 │   │   └── plugin.json          # Plugin metadata
 │   ├── skills/
@@ -20,6 +22,13 @@ claude-plugin/
 │   │       └── SKILL.md         # Main skill definition
 │   └── commands/
 │       └── search.md            # /skill-finder:search command
+├── plan-review-codex/           # Plugin: Codex plan review
+│   ├── .claude-plugin/
+│   │   └── plugin.json          # Plugin metadata
+│   ├── commands/
+│   │   └── plan-review.md       # /plan-review command
+│   └── scripts/
+│       └── plan-review.sh       # Codex CLI integration
 ├── README.md
 └── AGENTS.md
 ```
@@ -38,7 +47,7 @@ The skill-finder plugin searches:
 2. `nextlevelbuilder/ui-ux-pro-max-skill` - UI/UX specialist
 3. `skills.sh` - Community marketplace
 
-### Workflow
+### skill-finder Workflow
 
 1. Analyze project tech stack from config files
 2. Search skill sources using WebSearch/WebFetch
@@ -46,6 +55,16 @@ The skill-finder plugin searches:
 4. Ask user which skill to install (AskUserQuestion)
 5. Ask installation scope (project or user)
 6. Execute installation via git clone
+
+### plan-review-codex Workflow
+
+1. Auto-detect latest plan from `~/.claude/plans/` (or specify with `-f`)
+2. Send plan to OpenAI Codex CLI
+3. Receive comprehensive review:
+   - Feasibility analysis
+   - Missing items check
+   - Alternative suggestions
+4. User updates plan based on feedback
 
 ## Plugin Development
 

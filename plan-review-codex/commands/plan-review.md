@@ -5,38 +5,28 @@ description: Review implementation plan with Codex Agent. Use after completing y
 
 # Plan Review with Codex
 
-Request a comprehensive review of your implementation plan from Codex Agent.
+Review your implementation plan using OpenAI Codex Agent.
 
-## Review Perspectives
+## User Request
 
-1. **Feasibility** - Is it technically achievable? Any potential issues?
-2. **Missing Items** - Are there any missing steps or considerations?
-3. **Alternatives** - Are there better approaches or improvements?
+"$ARGUMENTS"
 
-## Usage
+## Instructions
 
-Run the script:
-```bash
-<plugin-dir>/scripts/plan-review.sh <arguments>
-```
+Use the `codex-review` skill to execute the plan review process.
 
-### Options
+### Quick Reference
 
-- (no args): Auto-detect latest file from ~/.claude/plans/
-- `-f <file>` or `--file <file>`: Specify plan file path
-- `-m <model>`: Specify Codex model (default: gpt-5.2-codex)
+- `/plan-review` - Auto-detect latest plan from ~/.claude/plans/
+- `/plan-review -f <path>` - Review specific plan file
+- `/plan-review -m <model>` - Use different Codex model
 
-### Examples
+### Execution
+
+Run the review script:
 
 ```bash
-/plan-review                                # Auto-detect
-/plan-review -f ~/.claude/plans/my-plan.md  # Specify file
-/plan-review -m o3                          # Use different model
+<plugin-dir>/scripts/plan-review.sh $ARGUMENTS
 ```
 
-## Workflow
-
-1. Complete plan in Plan mode
-2. Run `/plan-review` to request Codex review
-3. Update plan based on feedback
-4. Request user approval with ExitPlanMode
+Report the results organized by Feasibility, Missing Items, and Alternatives.
