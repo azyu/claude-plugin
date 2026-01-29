@@ -6,6 +6,11 @@
       "name": "skill-finder",
       "source": "./skill-finder",
       "description": "Analyze projects, search for AI skills, and install them"
+    },
+    {
+      "name": "plan-review-codex",
+      "source": "./plan-review-codex",
+      "description": "Review implementation plans with OpenAI Codex Agent"
     }
   ]
 }
