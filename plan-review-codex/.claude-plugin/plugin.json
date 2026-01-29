@@ -1,0 +1,10 @@
+{
+  "name": "plan-review-codex",
+  "description": "Review implementation plans with OpenAI Codex Agent",
+  "version": "1.0.0",
+  "author": {
+    "name": "azyu"
+  },
+  "repository": "https://github.com/azyu/claude-plugin",
+  "license": "MIT"
+}
