@@ -8,6 +8,7 @@ A collection of plugins for Claude Code.
 |--------|-------------|
 | [skill-finder](./skill-finder) | Analyze projects, search for AI skills, and install them |
 | [plan-review-codex](./plan-review-codex) | Review implementation plans with OpenAI Codex Agent |
+| [context-manager](./context-manager) | Intelligent project context management with semantic search |
 
 ## Installation
 
@@ -97,6 +98,32 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 2. Run `/plan-review` to request Codex review
 3. Update plan based on feedback
 4. Request user approval with ExitPlanMode
+
+## context-manager Usage
+
+```bash
+/context:init      # Initialize .context/ directory structure
+/context:search    # Find relevant context documents for current task
+/context:update    # Update documentation from recent changes
+/context:status    # Show context coverage status
+```
+
+### Features
+
+- **Auto-discovery**: Finds relevant docs based on keywords, file paths, task types
+- **Semantic search**: Optional qmd integration for vector-based search
+- **Documentation reminders**: Optional hooks to remind about undocumented changes
+
+### Directory Structure
+
+```
+.context/
+├── README.md           # Project overview
+├── planning/           # Implementation plans, status
+├── architecture/       # Design decisions, tech stack
+├── feedback/           # User feedback, issues
+└── reference/          # Guidelines, patterns
+```
 
 ## License
 
