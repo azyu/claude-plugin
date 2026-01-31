@@ -11,6 +11,11 @@
       "name": "plan-review-codex",
       "source": "./plan-review-codex",
       "description": "Review implementation plans with OpenAI Codex Agent"
+    },
+    {
+      "name": "context-manager",
+      "source": "./context-manager",
+      "description": "Intelligent project context management with semantic search. Automatically discovers, loads, and updates .context/ documentation."
     }
   ]
 }

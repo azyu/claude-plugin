@@ -1,0 +1,25 @@
+{
+  "name": "context-manager",
+  "description": "Intelligent project context management with semantic search support. Automatically discovers, loads, and updates project documentation from .context/ directories.",
+  "version": "1.0.0",
+  "author": {
+    "name": "azyu"
+  },
+  "repository": "https://github.com/azyu/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "documentation",
+    "project-management",
+    "semantic-search",
+    "qmd"
+  ],
+  "dependencies": {
+    "required": {
+      "python": ">=3.8"
+    },
+    "optional": {
+      "qmd": "Enables semantic search capabilities"
+    }
+  }
+}
