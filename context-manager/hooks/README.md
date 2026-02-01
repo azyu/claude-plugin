@@ -28,25 +28,20 @@ This directory contains hook scripts for the context-manager plugin. Due to secu
 
 ## Installation
 
-### Step 1: Copy Hook Scripts
+### Option A: Using hooks.json (Recommended)
 
-Copy the hook scripts to your Claude hooks directory:
+The plugin includes a declarative `hooks.json` configuration. Simply copy the entire hooks directory:
 
 ```bash
-# Create hooks directory if it doesn't exist
-mkdir -p ~/.claude/hooks/stop
+# Copy hooks directory including hooks.json
+mkdir -p ~/.claude/hooks
+cp -r hooks/* ~/.claude/hooks/
 
-# Copy hook scripts
-cp hooks/stop/context-update-reminder.sh ~/.claude/hooks/stop/
-cp hooks/stop/qmd-reindex.sh ~/.claude/hooks/stop/
-
-# Make executable
+# Make scripts executable
 chmod +x ~/.claude/hooks/stop/*.sh
 ```
 
-### Step 2: Configure settings.json
-
-Add the hooks to your `~/.claude/settings.json`:
+The `hooks/hooks.json` file automatically configures the hooks:
 
 ```json
 {
@@ -55,19 +50,8 @@ Add the hooks to your `~/.claude/settings.json`:
       {
         "matcher": "*",
         "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/stop/context-update-reminder.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/stop/qmd-reindex.sh"
-          }
+          { "type": "command", "command": "./hooks/stop/context-update-reminder.sh" },
+          { "type": "command", "command": "./hooks/stop/qmd-reindex.sh" }
         ]
       }
     ]
@@ -75,7 +59,39 @@ Add the hooks to your `~/.claude/settings.json`:
 }
 ```
 
-### Step 3: Verify Installation
+### Option B: Manual settings.json Configuration
+
+If you prefer to configure hooks in your global settings:
+
+#### Step 1: Copy Hook Scripts
+
+```bash
+mkdir -p ~/.claude/hooks/stop
+cp hooks/stop/*.sh ~/.claude/hooks/stop/
+chmod +x ~/.claude/hooks/stop/*.sh
+```
+
+#### Step 2: Configure settings.json
+
+Add to `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/stop/context-update-reminder.sh" },
+          { "type": "command", "command": "~/.claude/hooks/stop/qmd-reindex.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Verify Installation
 
 Test that hooks are working:
 
