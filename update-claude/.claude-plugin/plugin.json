@@ -1,0 +1,20 @@
+{
+  "name": "update-claude",
+  "description": "Learn from mistakes and update CLAUDE.md with rules to prevent them",
+  "version": "1.0.0",
+  "author": {
+    "name": "azyu"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthropics/claude-plugin"
+  },
+  "keywords": [
+    "learning",
+    "rules",
+    "claude-md",
+    "mistakes",
+    "continuous-improvement"
+  ]
+}

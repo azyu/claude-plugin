@@ -1,0 +1,26 @@
+# update-claude Plugin
+
+Continuous learning plugin that captures mistakes as rules in CLAUDE.md.
+
+## Commands
+
+- `/update-claude:learn` - Create rule from mistake
+- `/update-claude:list` - Show all rules
+- `/update-claude:review` - Clean up rules
+- `/update-claude:remove` - Delete rule
+
+## File Structure
+
+```
+update-claude/
+├── .claude-plugin/plugin.json  # Plugin metadata
+├── commands/                   # User-invocable commands
+│   ├── learn.md               # Analyze mistake → create rule
+│   ├── list.md                # Display all rules
+│   ├── review.md              # Clean up duplicates/conflicts
+│   └── remove.md              # Delete specific rule
+├── skills/update-claude/      # AI agent skill
+│   └── SKILL.md               # Core skill instructions
+├── CLAUDE.md                  # This file
+└── README.md                  # Documentation
+```

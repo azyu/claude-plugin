@@ -9,6 +9,7 @@ A collection of plugins for Claude Code.
 | [skill-finder](./skill-finder) | Analyze projects, search for AI skills, and install them |
 | [plan-review-codex](./plan-review-codex) | Review implementation plans with OpenAI Codex Agent |
 | [context-manager](./context-manager) | Intelligent project context management with semantic search |
+| [update-claude](./update-claude) | Learn from mistakes and update CLAUDE.md with preventive rules |
 
 ## Installation
 
@@ -123,6 +124,35 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 ├── architecture/       # Design decisions, tech stack
 ├── feedback/           # User feedback, issues
 └── reference/          # Guidelines, patterns
+```
+
+## update-claude Usage
+
+```bash
+/update-claude:learn              # Analyze conversation for mistakes
+/update-claude:learn "description" # Learn from specific mistake
+/update-claude:list               # Show all learned rules
+/update-claude:review             # Clean up duplicates/conflicts
+/update-claude:remove 3           # Remove rule by number
+/update-claude:remove tests       # Remove rules matching keyword
+```
+
+### How It Works
+
+1. **Mistake Detection**: Use `/update-claude:learn` when something goes wrong
+2. **Rule Formulation**: Claude creates a concise, actionable rule
+3. **Confirmation**: Approve before adding to CLAUDE.md
+4. **Persistence**: Rules saved to project's CLAUDE.md
+5. **Future Sessions**: Claude reads rules at session start
+
+### Rule Format
+
+```markdown
+## Learned Rules
+
+- [2024-01-15] Always read file contents before modifying
+- [2024-01-16] Run tests after any code changes
+- [2024-01-17] Check for existing implementations before creating new ones
 ```
 
 ## License
