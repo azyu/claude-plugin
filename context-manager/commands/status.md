@@ -3,14 +3,14 @@ name: status
 description: Check the current state of project context documentation
 ---
 
-# /context:status
+# /context-manager:status
 
 Display the status of the project's context documentation.
 
 ## Usage
 
 ```
-/context:status
+/context-manager:status
 ```
 
 ## Workflow
@@ -20,7 +20,7 @@ Display the status of the project's context documentation.
    if [ ! -d ".context" ]; then
      echo "❌ No .context directory found"
      echo ""
-     echo "Run /context:init to initialize context documentation."
+     echo "Run /context-manager:init to initialize context documentation."
      exit 1
    fi
    ```
@@ -97,8 +97,8 @@ Total Documents: 24
   ?? .context/operations/new_procedures.md
 
 💡 Tips:
-  • Run /context:update to document recent changes
-  • Run /context:search <query> to find relevant docs
+  • Run /context-manager:update to document recent changes
+  • Run /context-manager:search <query> to find relevant docs
   • Commit modified context files to preserve documentation
 ```
 

@@ -82,9 +82,9 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 ## plan-review-codex Usage
 
 ```bash
-/plan-review                                # Auto-detect latest plan from ~/.claude/plans/
-/plan-review -f ~/.claude/plans/my-plan.md  # Specify plan file
-/plan-review -m o3                          # Use different Codex model
+/plan-review-codex:plan-review                                # Auto-detect latest plan from ~/.claude/plans/
+/plan-review-codex:plan-review -f ~/.claude/plans/my-plan.md  # Specify plan file
+/plan-review-codex:plan-review -m o3                          # Use different Codex model
 ```
 
 ### Review Perspectives
@@ -96,17 +96,17 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 ### Workflow
 
 1. Complete plan in Plan mode
-2. Run `/plan-review` to request Codex review
+2. Run `/plan-review-codex:plan-review` to request Codex review
 3. Update plan based on feedback
 4. Request user approval with ExitPlanMode
 
 ## context-manager Usage
 
 ```bash
-/context:init      # Initialize .context/ directory structure
-/context:search    # Find relevant context documents for current task
-/context:update    # Update documentation from recent changes
-/context:status    # Show context coverage status
+/context-manager:init      # Initialize .context/ directory structure
+/context-manager:search    # Find relevant context documents for current task
+/context-manager:update    # Update documentation from recent changes
+/context-manager:status    # Show context coverage status
 ```
 
 ### Features

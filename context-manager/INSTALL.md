@@ -42,7 +42,7 @@ Start Claude Code and test the commands:
 
 ```bash
 # Check if commands are available
-/context:status
+/context-manager:status
 ```
 
 You should see either a status output or a message about no `.context/` directory.
@@ -52,7 +52,7 @@ You should see either a status output or a message about no `.context/` director
 In your project directory:
 
 ```bash
-/context:init
+/context-manager:init
 ```
 
 This creates the `.context/` structure with standard categories.
@@ -67,7 +67,7 @@ pip install qmd
 
 # Setup collection for your project
 cd /path/to/your/project
-python ~/.claude/skills/context-manager/scripts/qmd_setup.py --context-dir .context
+python3 ~/.claude/skills/context-manager/scripts/qmd_setup.py --context-dir .context
 ```
 
 Verify setup:
@@ -79,9 +79,25 @@ qmd query "test query" --collection context
 
 ### 4. Install Hooks (Optional)
 
-Hooks require manual configuration due to security restrictions.
+Hooks can be configured using the declarative `hooks.json` file or manual setup.
 
-#### Copy Hook Scripts
+#### Option A: Using hooks.json (Recommended)
+
+Copy the hooks directory including hooks.json:
+
+```bash
+mkdir -p ~/.claude/hooks
+cp -r hooks/* ~/.claude/hooks/
+chmod +x ~/.claude/hooks/stop/*.sh
+```
+
+The `hooks/hooks.json` file declares the hook configuration automatically.
+
+#### Option B: Manual Configuration
+
+Copy hook scripts and configure settings.json manually:
+
+##### Copy Hook Scripts
 
 ```bash
 mkdir -p ~/.claude/hooks/stop
@@ -132,7 +148,7 @@ echo "test" | ~/.claude/hooks/stop/qmd-reindex.sh
 To add custom categories when initializing:
 
 ```bash
-/context:init
+/context-manager:init
 # Select "Custom" when prompted
 # Enter your categories: planning,architecture,api,testing
 ```
@@ -152,7 +168,7 @@ Then update search commands to use the custom collection name.
 ### Commands Not Found
 
 ```
-Error: Unknown command /context:init
+Error: Unknown command /context-manager:init
 ```
 
 **Solution**: Ensure commands are in the correct location:

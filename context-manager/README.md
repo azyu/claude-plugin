@@ -32,23 +32,26 @@ Copy the following to your Claude installation:
 - `skills/context-manager/` → `~/.claude/skills/`
 - `scripts/` → `~/.claude/skills/context-manager/scripts/`
 
+**Note**: After manual installation, scripts are called from:
+`~/.claude/skills/context-manager/scripts/`
+
 See [INSTALL.md](INSTALL.md) for detailed instructions.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/context:init` | Initialize `.context/` directory structure |
-| `/context:search <query>` | Search for relevant context documents |
-| `/context:update --category <cat> --file <name> --summary "<text>"` | Update or create documentation |
-| `/context:status` | Show context directory status |
+| `/context-manager:init` | Initialize `.context/` directory structure |
+| `/context-manager:search <query>` | Search for relevant context documents |
+| `/context-manager:update --category <cat> --file <name> --summary "<text>"` | Update or create documentation |
+| `/context-manager:status` | Show context directory status |
 
 ## Quick Start
 
 ### 1. Initialize Context
 
 ```bash
-/context:init
+/context-manager:init
 ```
 
 This creates a `.context/` directory with standard categories:
@@ -63,22 +66,22 @@ This creates a `.context/` directory with standard categories:
 
 ```bash
 # Keyword search
-/context:search authentication OAuth
+/context-manager:search authentication OAuth
 
 # Natural language (with qmd)
-/context:search "how do I set up user login?"
+/context-manager:search "how do I set up user login?"
 ```
 
 ### 3. Update Context
 
 ```bash
-/context:update --category planning --file auth_feature.md --summary "Completed JWT authentication with refresh tokens"
+/context-manager:update --category planning --file auth_feature.md --summary "Completed JWT authentication with refresh tokens"
 ```
 
 ### 4. Check Status
 
 ```bash
-/context:status
+/context-manager:status
 ```
 
 ## Semantic Search (qmd)
@@ -92,7 +95,7 @@ pip install qmd
 Then set up the context collection:
 
 ```bash
-python scripts/qmd_setup.py --context-dir .context
+python3 scripts/qmd_setup.py --context-dir .context
 ```
 
 ### How It Works
@@ -111,10 +114,10 @@ context-manager/
 ├── .claude-plugin/
 │   └── plugin.json         # Plugin metadata
 ├── commands/
-│   ├── init.md             # /context:init
-│   ├── search.md           # /context:search
-│   ├── update.md           # /context:update
-│   └── status.md           # /context:status
+│   ├── init.md             # /context-manager:init
+│   ├── search.md           # /context-manager:search
+│   ├── update.md           # /context-manager:update
+│   └── status.md           # /context-manager:status
 ├── skills/
 │   └── context-manager/
 │       └── SKILL.md        # AI agent skill definition
@@ -157,7 +160,7 @@ See [hooks/README.md](hooks/README.md) for installation instructions.
 
 ### DO
 
-- ✅ Run `/context:search` before starting major work
+- ✅ Run `/context-manager:search` before starting major work
 - ✅ Update context after completing significant features
 - ✅ Use categories consistently
 - ✅ Keep documents focused and concise

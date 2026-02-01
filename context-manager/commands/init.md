@@ -3,7 +3,7 @@ name: init
 description: Initialize .context/ directory structure for project documentation
 ---
 
-# /context:init
+# /context-manager:init
 
 Initialize a `.context/` directory structure in the current project for managing documentation.
 
@@ -56,9 +56,9 @@ Initialize a `.context/` directory structure in the current project for managing
 
    ## Usage
 
-   Use `/context:search <query>` to find relevant documentation.
-   Use `/context:update` to update or create documentation.
-   Use `/context:status` to check the current state of documentation.
+   Use `/context-manager:search <query>` to find relevant documentation.
+   Use `/context-manager:update` to update or create documentation.
+   Use `/context-manager:status` to check the current state of documentation.
 
    ---
 
@@ -70,7 +70,7 @@ Initialize a `.context/` directory structure in the current project for managing
 6. **Optional: Setup qmd collection** if qmd is available:
    ```bash
    if command -v qmd &> /dev/null; then
-     python "$PLUGIN_DIR/scripts/qmd_setup.py" --context-dir .context
+     python3 "$PLUGIN_DIR/scripts/qmd_setup.py" --context-dir .context
      echo "✓ qmd semantic search enabled"
    fi
    ```
@@ -107,6 +107,6 @@ Initialize a `.context/` directory structure in the current project for managing
 
 Next steps:
 1. Start documenting your project in .context/
-2. Use /context:update to create documents
-3. Use /context:search to find relevant docs
+2. Use /context-manager:update to create documents
+3. Use /context-manager:search to find relevant docs
 ```

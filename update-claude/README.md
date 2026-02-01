@@ -9,7 +9,7 @@ When Claude makes mistakes during a session, this plugin helps capture those lea
 ## Installation
 
 ```bash
-npx add-skill update-claude https://github.com/anthropics/claude-plugin/tree/main/update-claude
+npx add-skill update-claude https://github.com/azyu/claude-plugin/tree/main/update-claude
 ```
 
 Or manually:

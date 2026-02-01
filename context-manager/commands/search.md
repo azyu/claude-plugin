@@ -7,22 +7,22 @@ arguments:
     required: true
 ---
 
-# /context:search
+# /context-manager:search
 
 Search for relevant context documents using semantic search (qmd) or keyword matching.
 
 ## Usage
 
 ```
-/context:search <query>
+/context-manager:search <query>
 ```
 
 ## Examples
 
 ```
-/context:search monitoring setup
-/context:search "how to deploy to production"
-/context:search authentication OAuth integration
+/context-manager:search monitoring setup
+/context-manager:search "how to deploy to production"
+/context-manager:search authentication OAuth integration
 ```
 
 ## Workflow
@@ -30,7 +30,7 @@ Search for relevant context documents using semantic search (qmd) or keyword mat
 1. **Check for .context directory**
    ```bash
    if [ ! -d ".context" ]; then
-     echo "❌ No .context directory found. Run /context:init first."
+     echo "❌ No .context directory found. Run /context-manager:init first."
      exit 1
    fi
    ```
@@ -53,7 +53,7 @@ Search for relevant context documents using semantic search (qmd) or keyword mat
 
    ### Keyword Search (fallback)
    ```bash
-   python "$PLUGIN_DIR/scripts/find_context.py" \
+   python3 "$PLUGIN_DIR/scripts/find_context.py" \
      --context-dir .context \
      --keywords $QUERY \
      --max-results 5 \
@@ -107,5 +107,5 @@ Uses embeddings for semantic similarity:
 
 - Use specific keywords for precise matching
 - Use natural language for exploratory searches
-- Combine with task type: `/context:search authentication --task-type bugfix`
+- Combine with task type: `/context-manager:search authentication --task-type bugfix`
 - Check README.md if no relevant results found

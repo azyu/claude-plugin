@@ -13,24 +13,24 @@ arguments:
     required: true
 ---
 
-# /context:update
+# /context-manager:update
 
 Update an existing context document or create a new one.
 
 ## Usage
 
 ```
-/context:update --category <category> --file <filename> --summary "<content>"
+/context-manager:update --category <category> --file <filename> --summary "<content>"
 ```
 
 ## Examples
 
 ```
-/context:update --category planning --file auth_implementation.md --summary "Completed JWT authentication with refresh token support"
+/context-manager:update --category planning --file auth_implementation.md --summary "Completed JWT authentication with refresh token support"
 
-/context:update --category operations --file known_issues.md --summary "Fixed: Session timeout causing logout loop - root cause was stale Redis cache"
+/context-manager:update --category operations --file known_issues.md --summary "Fixed: Session timeout causing logout loop - root cause was stale Redis cache"
 
-/context:update --category architecture --file api_design.md --summary "Added rate limiting middleware to all public endpoints"
+/context-manager:update --category architecture --file api_design.md --summary "Added rate limiting middleware to all public endpoints"
 ```
 
 ## Workflow
@@ -47,7 +47,7 @@ Update an existing context document or create a new one.
 
 2. **Execute update**
    ```bash
-   python "$PLUGIN_DIR/scripts/update_context.py" \
+   python3 "$PLUGIN_DIR/scripts/update_context.py" \
      --context-dir .context \
      --category "$CATEGORY" \
      --file "$FILE" \

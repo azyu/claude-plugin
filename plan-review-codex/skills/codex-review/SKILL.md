@@ -69,7 +69,7 @@ Plan file: $PLAN_FILE
 $(cat "$PLAN_FILE")
 ---"
 
-codex exec -m "$MODEL" $REASONING_FLAG --dangerously-bypass-approvals-and-sandbox "$PROMPT"
+codex exec -m "$MODEL" $REASONING_FLAG "$PROMPT"
 ```
 
 ### Step 5: Present Results

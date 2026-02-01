@@ -34,7 +34,7 @@
 ```
 context-manager/
 ├── .claude-plugin/plugin.json    # 플러그인 메타데이터
-├── commands/                      # 4개 명령어 (/context:*)
+├── commands/                      # 4개 명령어 (/context-manager:*)
 ├── skills/context-manager/        # AI 에이전트 스킬
 ├── scripts/                       # Python 스크립트 (3개)
 ├── hooks/                         # 선택적 hooks
@@ -50,10 +50,10 @@ context-manager/
 claude --plugin-dir /Volumes/EXTSSD/code/personal/claude-plugin/context-manager
 
 # 명령어 확인
-/context:init
-/context:search <query>
-/context:update --category <cat> --file <name> --summary "<text>"
-/context:status
+/context-manager:init
+/context-manager:search <query>
+/context-manager:update --category <cat> --file <name> --summary "<text>"
+/context-manager:status
 ```
 
 ## 관련 파일 위치

@@ -11,16 +11,16 @@
 cd /path/to/test/project
 
 # 1. 초기화 테스트
-/context:init
+/context-manager:init
 
 # 2. 상태 확인
-/context:status
+/context-manager:status
 
 # 3. 업데이트 테스트
-/context:update --category planning --file test.md --summary "Test content"
+/context-manager:update --category planning --file test.md --summary "Test content"
 
 # 4. 검색 테스트
-/context:search test planning
+/context-manager:search test planning
 ```
 
 ### 2. qmd 통합 테스트 (우선순위: 높음)

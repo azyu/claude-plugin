@@ -16,6 +16,11 @@
       "name": "context-manager",
       "source": "./context-manager",
       "description": "Intelligent project context management with semantic search. Automatically discovers, loads, and updates .context/ documentation."
+    },
+    {
+      "name": "update-claude",
+      "source": "./update-claude",
+      "description": "Learn from mistakes and update CLAUDE.md with preventive rules"
     }
   ]
 }

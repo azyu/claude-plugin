@@ -8,7 +8,7 @@ input=$(cat)
 # Check if .context directory exists and qmd is available
 if [ -d ".context" ] && command -v qmd &> /dev/null; then
   # Check if any .context/*.md files were modified
-  context_changes=$(git diff --name-only HEAD 2>/dev/null | grep -E '^\.context/.*\.md$' | wc -l | tr -d ' ')
+  context_changes=$(git status --porcelain 2>/dev/null | grep -E '\.context/.*\.md$' | wc -l | tr -d ' ')
 
   if [ "$context_changes" -gt 0 ]; then
     echo "[Hook] 🔄 Reindexing qmd ($context_changes context file(s) changed)..." >&2

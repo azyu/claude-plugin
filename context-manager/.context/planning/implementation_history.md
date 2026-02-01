@@ -24,10 +24,10 @@
 
 #### Phase 2: 명령어 작성
 
-- [x] `commands/init.md` - `/context:init` 프로젝트 초기화
-- [x] `commands/search.md` - `/context:search` 문서 검색 (qmd 통합)
-- [x] `commands/update.md` - `/context:update` 문서 업데이트
-- [x] `commands/status.md` - `/context:status` 상태 확인
+- [x] `commands/init.md` - `/context-manager:init` 프로젝트 초기화
+- [x] `commands/search.md` - `/context-manager:search` 문서 검색 (qmd 통합)
+- [x] `commands/update.md` - `/context-manager:update` 문서 업데이트
+- [x] `commands/status.md` - `/context-manager:status` 상태 확인
 
 #### Phase 3: 스킬 및 스크립트
 
@@ -65,7 +65,7 @@
 - [x] `find_context.py --help` 동작 확인
 - [x] `update_context.py --help` 동작 확인
 - [x] `qmd_setup.py --help` 동작 확인
-- [ ] 실제 프로젝트에서 `/context:init` 테스트
+- [ ] 실제 프로젝트에서 `/context-manager:init` 테스트
 - [ ] qmd 있는 환경에서 시맨틱 검색 테스트
 - [ ] Hook 수동 설치 후 동작 테스트
 

@@ -70,7 +70,7 @@ if results is None:
 
 ---
 
-### 4. 명령어 네이밍: `/context:*` 네임스페이스
+### 4. 명령어 네이밍: `/context-manager:*` 네임스페이스
 
 **결정**: 모든 명령어를 `context:` 네임스페이스 아래에 배치
 
@@ -81,10 +81,10 @@ if results is None:
 
 **구현**:
 ```
-/context:init
-/context:search
-/context:update
-/context:status
+/context-manager:init
+/context-manager:search
+/context-manager:update
+/context-manager:status
 ```
 
 **대안 고려**:

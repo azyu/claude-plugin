@@ -17,6 +17,6 @@ Use the `codex-review` skill to execute the plan review process.
 
 ### Quick Reference
 
-- `/plan-review` - Auto-detect latest plan from ~/.claude/plans/
-- `/plan-review -f <path>` - Review specific plan file
-- `/plan-review -m <model>` - Use different Codex model
+- `/plan-review-codex:plan-review` - Auto-detect latest plan from ~/.claude/plans/
+- `/plan-review-codex:plan-review -f <path>` - Review specific plan file
+- `/plan-review-codex:plan-review -m <model>` - Use different Codex model

@@ -42,7 +42,7 @@ ls -la ./.context/ ../.context/ ../../.context/ 2>/dev/null
 
 **If no context directory exists:**
 - Ask the user if they want to initialize a context structure
-- Use `/context:init` to create the structure
+- Use `/context-manager:init` to create the structure
 - Suggest common categories based on project type
 
 **If context directory exists:**
@@ -111,9 +111,9 @@ After completing work, update documentation as needed:
 - Recording a significant architectural decision
 - Establishing new operational procedures
 
-**Example using /context:update:**
+**Example using /context-manager:update:**
 ```bash
-/context:update --category "monitoring" --file "agent_streaming_implementation.md" --summary "Completed agent streaming feature with WebSocket support"
+/context-manager:update --category "monitoring" --file "agent_streaming_implementation.md" --summary "Completed agent streaming feature with WebSocket support"
 ```
 
 **Update guidelines:**
@@ -146,7 +146,7 @@ The skill uses a weighted scoring system:
 **Keyword matching (40%):**
 - Exact match in filename: +0.4
 - Match in category name: +0.3
-- Match in content (if indexed): +0.2
+- Partial match (word boundary in filename): +0.2
 
 **Path-based matching (30%):**
 - File path overlap with context category

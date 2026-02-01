@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./hooks/stop/context-update-reminder.sh"
+          },
+          {
+            "type": "command",
+            "command": "./hooks/stop/qmd-reindex.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -25,10 +25,11 @@ claude-plugin/
 ├── plan-review-codex/           # Plugin: Codex plan review
 │   ├── .claude-plugin/
 │   │   └── plugin.json          # Plugin metadata
-│   ├── commands/
-│   │   └── plan-review.md       # /plan-review command
-│   └── scripts/
-│       └── plan-review.sh       # Codex CLI integration
+│   ├── skills/
+│   │   └── codex-review/
+│   │       └── SKILL.md         # Codex review skill
+│   └── commands/
+│       └── plan-review.md       # /plan-review command
 ├── README.md
 └── AGENTS.md
 ```
