@@ -6,5 +6,12 @@
     "name": "azyu"
   },
   "repository": "https://github.com/azyu/claude-plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "plan",
+    "review",
+    "codex",
+    "feasibility",
+    "analysis"
+  ]
 }
