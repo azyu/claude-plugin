@@ -13,7 +13,7 @@ You are an expert plan reviewer that leverages OpenAI Codex for comprehensive im
 
 Check `$ARGUMENTS` for options:
 - `-f <file>` or `--file <file>`: Use specified plan file
-- `-m <model>` or `--model <model>`: Use different Codex model (default: gpt-5.2-codex)
+- `-m <model>` or `--model <model>`: Use different Codex model (default: gpt-5.3-codex)
 - First positional argument: Treat as file path
 
 ### Step 2: Detect Plan File
@@ -53,9 +53,9 @@ Verify plan file exists:
 Build and execute the review command:
 
 ```bash
-MODEL="${MODEL:-gpt-5.2-codex}"
+MODEL="${MODEL:-gpt-5.3-codex}"
 REASONING_FLAG=""
-[[ "$MODEL" == "gpt-5.2-codex" ]] && REASONING_FLAG="-c model_reasoning_effort=high"
+[[ "$MODEL" == "gpt-5.3-codex" ]] && REASONING_FLAG="-c model_reasoning_effort=xhigh"
 
 PROMPT="Please provide a comprehensive review of the following implementation plan:
 
