@@ -12,12 +12,5 @@
     "plan-mode",
     "sync",
     "notes"
-  ],
-  "dependencies": {
-    "optional": {
-      "notesmd-cli": "CLI tool for Obsidian vault interaction",
-      "OBSIDIAN_API_KEY": "Environment variable for Obsidian REST API",
-      "OBSIDIAN_API_URL": "Environment variable for Obsidian REST API endpoint"
-    }
-  }
+  ]
 }
