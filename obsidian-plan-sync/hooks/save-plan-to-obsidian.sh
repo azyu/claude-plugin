@@ -31,9 +31,12 @@ fi
 # Make title filename-safe
 title=$(echo "$title" | sed 's/[[:space:]]/-/g' | sed 's/[\/\\:*?"<>|#]//g' | cut -c1-50 | sed 's/-*$//')
 
+# Detect project name from working directory
+project=$(basename "$(pwd)")
+
 date_prefix=$(date +%Y%m%d)
 filename="${date_prefix}_${title}.md"
-note_path="Plan/${filename}"
+note_path="Plan/${project}/${filename}"
 saved=false
 
 # --- Strategy 1: REST API ---
@@ -55,7 +58,7 @@ fi
 
 # --- Strategy 2: notesmd-cli ---
 if [ "$saved" = false ] && command -v notesmd-cli &>/dev/null; then
-  if notesmd-cli create "Plan/${date_prefix}_${title}" --content "$plan_content" --overwrite 2>/dev/null; then
+  if notesmd-cli create "Plan/${project}/${date_prefix}_${title}" --content "$plan_content" --overwrite 2>/dev/null; then
     echo "[obsidian-plan-sync] Saved to Obsidian (notesmd-cli): ${note_path}" >&2
     saved=true
   else
