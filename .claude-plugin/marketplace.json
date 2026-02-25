@@ -21,6 +21,11 @@
       "name": "update-claude",
       "source": "./update-claude",
       "description": "Learn from mistakes and update CLAUDE.md with preventive rules"
+    },
+    {
+      "name": "prompt-engineer",
+      "source": "./prompt-engineer",
+      "description": "Create, optimize, debug, and analyze prompts with proven patterns and frameworks"
     }
   ]
 }

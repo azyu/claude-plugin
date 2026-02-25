@@ -9,6 +9,7 @@ This is a Claude Code plugin marketplace containing plugins:
 - **plan-review-codex**: Reviews implementation plans with OpenAI Codex Agent
 - **context-manager**: Intelligent project context management with semantic search
 - **update-claude**: Learn from mistakes and update CLAUDE.md with preventive rules
+- **prompt-engineer**: Create, optimize, debug, and analyze prompts with proven patterns and frameworks
 
 ## Architecture
 
@@ -58,6 +59,21 @@ claude-plugin/
 │   │   ├── list.md              # /update-claude:list
 │   │   ├── review.md            # /update-claude:review
 │   │   └── remove.md            # /update-claude:remove
+│   ├── README.md
+│   └── CLAUDE.md
+├── prompt-engineer/             # Plugin: Prompt engineering
+│   ├── .claude-plugin/
+│   │   └── plugin.json          # Plugin metadata
+│   ├── skills/prompt-engineer/
+│   │   └── SKILL.md             # CRAFT framework expertise
+│   ├── commands/
+│   │   ├── create.md            # /prompt-engineer:create
+│   │   ├── optimize.md          # /prompt-engineer:optimize
+│   │   ├── debug.md             # /prompt-engineer:debug
+│   │   └── analyze.md           # /prompt-engineer:analyze
+│   ├── references/
+│   │   ├── prompt-patterns.md   # Proven pattern catalog
+│   │   └── anti-patterns.md     # Common mistakes and fixes
 │   ├── README.md
 │   └── CLAUDE.md
 ├── README.md
@@ -113,6 +129,15 @@ The skill-finder plugin searches:
 3. Formulate preventive rule
 4. Add rule to project's CLAUDE.md
 5. Future sessions read and follow rules
+
+### prompt-engineer Workflow
+
+1. Receive task description or existing prompt
+2. Analyze domain, complexity, and target model
+3. Apply CRAFT framework (Context, Role, Action, Format, Tone)
+4. Select appropriate structure (XML/Markdown/plain text)
+5. Apply proven patterns (CoT, Few-Shot, Role-Based, etc.)
+6. Output optimized prompt with design rationale
 
 ## Plugin Development
 

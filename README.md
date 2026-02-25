@@ -10,6 +10,7 @@ A collection of plugins for Claude Code.
 | [plan-review-codex](./plan-review-codex) | Review implementation plans with OpenAI Codex Agent |
 | [context-manager](./context-manager) | Intelligent project context management with semantic search |
 | [update-claude](./update-claude) | Learn from mistakes and update CLAUDE.md with preventive rules |
+| [prompt-engineer](./prompt-engineer) | Create, optimize, debug, and analyze prompts with proven patterns and frameworks |
 
 ## Installation
 
@@ -154,6 +155,35 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 - [2024-01-16] Run tests after any code changes
 - [2024-01-17] Check for existing implementations before creating new ones
 ```
+
+## prompt-engineer Usage
+
+```bash
+/prompt-engineer:create "Write a code review prompt"   # Generate new prompt
+/prompt-engineer:create "Customer support chatbot"      # Generate with CRAFT framework
+/prompt-engineer:optimize                                # Optimize existing prompt
+/prompt-engineer:debug                                   # Debug underperforming prompt
+/prompt-engineer:analyze                                 # Analyze prompt structure
+```
+
+### CRAFT Framework
+
+Every prompt is built using the CRAFT framework:
+
+| Element | Description |
+|---------|-------------|
+| **C**ontext | Background information and constraints |
+| **R**ole | AI persona and expertise level |
+| **A**ction | Specific task to perform |
+| **F**ormat | Output structure and format |
+| **T**one | Style, voice, and communication approach |
+
+### Workflow
+
+1. **Analyze** - Understand task domain, complexity, and target model
+2. **Design** - Apply CRAFT framework with proven patterns
+3. **Generate** - Output optimized prompt with design rationale
+4. **Refine** - Iterate based on feedback
 
 ## License
 
