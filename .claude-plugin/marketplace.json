@@ -26,6 +26,11 @@
       "name": "prompt-engineer",
       "source": "./prompt-engineer",
       "description": "Create, optimize, debug, and analyze prompts with proven patterns and frameworks"
+    },
+    {
+      "name": "obsidian-plan-sync",
+      "source": "./obsidian-plan-sync",
+      "description": "Auto-save Claude Code plans to Obsidian vault on ExitPlanMode"
     }
   ]
 }
