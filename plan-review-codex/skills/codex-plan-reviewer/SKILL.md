@@ -1,5 +1,5 @@
 ---
-name: codex-review
+name: codex-plan-reviewer
 description: Review implementation plans with OpenAI Codex. Provides feasibility analysis, missing items check, and alternative suggestions.
 ---
 

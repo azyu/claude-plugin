@@ -8,7 +8,7 @@ Review implementation plans with OpenAI Codex Agent.
 
 ## Skills
 
-- `codex-review` - Reviews code changes or plans with Codex
+- `codex-plan-reviewer` - Reviews implementation plans with Codex
 
 ## File Structure
 
@@ -17,7 +17,7 @@ plan-review-codex/
 ├── .claude-plugin/plugin.json  # Plugin metadata
 ├── commands/                   # User-invocable commands
 │   └── plan-review.md         # /plan-review-codex:plan-review command
-├── skills/codex-review/       # AI agent skill
+├── skills/codex-plan-reviewer/ # AI agent skill
 │   └── SKILL.md               # Codex review instructions
 └── CLAUDE.md                  # This file
 ```

@@ -13,7 +13,7 @@ Review your implementation plan using OpenAI Codex Agent.
 
 ## Instructions
 
-Use the `codex-review` skill to execute the plan review process.
+Use the `codex-plan-reviewer` skill to execute the plan review process.
 
 ### Quick Reference
 
