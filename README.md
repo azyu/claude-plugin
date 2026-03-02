@@ -11,6 +11,8 @@ A collection of plugins for Claude Code.
 | [context-manager](./context-manager) | Intelligent project context management with semantic search |
 | [update-claude](./update-claude) | Learn from mistakes and update CLAUDE.md with preventive rules |
 | [prompt-engineer](./prompt-engineer) | Create, optimize, debug, and analyze prompts with proven patterns and frameworks |
+| [obsidian-plan-sync](./obsidian-plan-sync) | Automatically save plans to Obsidian vault on Plan Mode exit |
+| [obsidian-report-sync](./obsidian-report-sync) | Automatically save session work reports to Obsidian vault |
 
 ## Installation
 
@@ -184,6 +186,64 @@ Every prompt is built using the CRAFT framework:
 2. **Design** - Apply CRAFT framework with proven patterns
 3. **Generate** - Output optimized prompt with design rationale
 4. **Refine** - Iterate based on feedback
+
+## obsidian-plan-sync Usage
+
+Automatically saves plans to your Obsidian vault when you exit Plan Mode.
+
+### How It Works
+
+- **PostToolUse** hook on `ExitPlanMode` — picks up the latest plan from `~/.claude/plans/`
+- **Stop** hook fallback — catches plans that weren't saved during `ExitPlanMode`
+- Extracts title from plan content and saves to `Plan/<date>_<title>.md` in Obsidian
+
+### 3-Tier Save Strategy
+
+| Priority | Method | Config |
+|----------|--------|--------|
+| 1 | Obsidian REST API | `OBSIDIAN_API_KEY` + `OBSIDIAN_API_URL` env vars |
+| 2 | `notesmd-cli` | `brew install notesmd-cli` or `go install` |
+| 3 | Direct file write | Obsidian vault at `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Vault` |
+
+### Requirements
+
+One of the above save methods must be available.
+
+## obsidian-report-sync Usage
+
+Automatically saves structured work reports to Obsidian when meaningful implementation work is completed.
+
+### How It Works
+
+1. Session ends → prompt-based **Stop** hook fires
+2. Hook LLM evaluates DoD: "Was meaningful work done?"
+   - **No** (exploration/questions only) → session ends normally
+   - **Yes** (code written/modified/deleted) → blocks exit, instructs report generation
+3. Claude generates a structured markdown report → saves via `save-report-to-obsidian.sh`
+4. Report saved to `Report/<project-name>/<YYYYMMDD>_<title>.md` in Obsidian
+5. `[REPORT_SAVED]` marker output → Stop hook re-fires → approves → session ends
+
+### Report Template
+
+```markdown
+# <Title>
+
+## Task Summary
+## Changed Files
+## Key Decisions
+## Test Results
+## Remaining Issues
+```
+
+### Requirements
+
+One of the following save methods:
+
+| Method | Config |
+|--------|--------|
+| Obsidian REST API | `OBSIDIAN_API_KEY` + `OBSIDIAN_API_URL` env vars |
+| `notesmd-cli` | `brew install notesmd-cli` |
+| Direct file write | Obsidian vault at default iCloud path |
 
 ## License
 

@@ -10,6 +10,8 @@ This is a Claude Code plugin marketplace containing plugins:
 - **context-manager**: Intelligent project context management with semantic search
 - **update-claude**: Learn from mistakes and update CLAUDE.md with preventive rules
 - **prompt-engineer**: Create, optimize, debug, and analyze prompts with proven patterns and frameworks
+- **obsidian-plan-sync**: Automatically saves plans to Obsidian vault on Plan Mode exit
+- **obsidian-report-sync**: Automatically saves session work reports to Obsidian vault
 
 ## Architecture
 
@@ -76,7 +78,25 @@ claude-plugin/
 │   │   └── anti-patterns.md     # Common mistakes and fixes
 │   ├── README.md
 │   └── CLAUDE.md
+├── obsidian-plan-sync/            # Plugin: Plan → Obsidian sync
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── hooks/
+│   │   ├── hooks.json             # PostToolUse(ExitPlanMode) + Stop fallback
+│   │   ├── _lib.sh                # Shared save utilities
+│   │   ├── save-plan-to-obsidian.sh
+│   │   └── stop-save-plan-to-obsidian.sh
+│   └── CLAUDE.md
+├── obsidian-report-sync/          # Plugin: Report → Obsidian sync
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── hooks/
+│   │   ├── hooks.json             # Prompt-based Stop hook (DoD evaluation)
+│   │   ├── _lib.sh                # Shared save utilities
+│   │   └── save-report-to-obsidian.sh
+│   └── CLAUDE.md
 ├── README.md
+├── CLAUDE.md → AGENTS.md          # Symlink
 └── AGENTS.md
 ```
 
@@ -138,6 +158,23 @@ The skill-finder plugin searches:
 4. Select appropriate structure (XML/Markdown/plain text)
 5. Apply proven patterns (CoT, Few-Shot, Role-Based, etc.)
 6. Output optimized prompt with design rationale
+
+### obsidian-plan-sync Workflow
+
+1. User exits Plan Mode → PostToolUse hook fires on `ExitPlanMode`
+2. Script finds latest plan in `~/.claude/plans/`
+3. Extracts title, formats as `Plan/<date>_<title>.md`
+4. Saves to Obsidian via REST API / notesmd-cli / direct file write
+5. Stop hook acts as fallback for plans missed during ExitPlanMode
+
+### obsidian-report-sync Workflow
+
+1. Session ends → prompt-based Stop hook fires
+2. Hook LLM evaluates DoD (meaningful code changes?)
+3. If reportable: blocks exit, instructs Claude to generate report
+4. Claude generates structured report → runs `save-report-to-obsidian.sh`
+5. Report saved to `Report/<project>/<YYYYMMDD>_<title>.md`
+6. `[REPORT_SAVED]` marker → Stop hook re-fires → approves → session ends
 
 ## Plugin Development
 
