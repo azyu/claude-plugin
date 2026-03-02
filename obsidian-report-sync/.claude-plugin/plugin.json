@@ -1,0 +1,16 @@
+{
+  "name": "obsidian-report-sync",
+  "description": "Automatically saves session work reports to Obsidian vault when meaningful implementation work is completed. Uses prompt-based Stop hook for DoD evaluation.",
+  "version": "1.0.0",
+  "author": {
+    "name": "azyu"
+  },
+  "repository": "https://github.com/azyu/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "report",
+    "dod",
+    "sync"
+  ]
+}

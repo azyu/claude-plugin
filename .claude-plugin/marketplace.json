@@ -31,6 +31,11 @@
       "name": "obsidian-plan-sync",
       "source": "./obsidian-plan-sync",
       "description": "Auto-save Claude Code plans to Obsidian vault on ExitPlanMode"
+    },
+    {
+      "name": "obsidian-report-sync",
+      "source": "./obsidian-report-sync",
+      "description": "Auto-save session work reports to Obsidian vault on session end"
     }
   ]
 }

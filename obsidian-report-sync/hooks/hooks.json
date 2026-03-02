@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "You are evaluating whether a Claude Code session has completed meaningful implementation work that deserves a work report before the session ends.\n\nAnalyze the conversation and determine the appropriate action:\n\n## IMMEDIATELY APPROVE (no report needed) if ANY of these are true:\n- The conversation contains '[REPORT_SAVED]' or '[obsidian-report-sync]' — report already saved\n- The session was purely exploratory (reading files, searching code, answering questions)\n- The conversation is very short (fewer than ~5 back-and-forth exchanges)\n- No code was written, modified, committed, or deleted\n- The user only asked questions or requested explanations\n- The session only involved planning (Plan Mode) without implementation\n\n## BLOCK (report needed) if ALL of these are true:\n- Code was actually written, modified, refactored, or deleted\n- The work appears to be completed (not abandoned mid-way)\n- No '[REPORT_SAVED]' or '[obsidian-report-sync]' marker exists in the conversation\n\nExamples of reportable work: feature implementation, bug fixes, refactoring, test writing, configuration changes, build fixes, dependency updates.\n\nIf you decide to BLOCK, use this systemMessage to instruct Claude to generate and save the report:\n\n---\nBefore ending this session, you must create a work report and save it to Obsidian.\n\n1. Generate a report in this exact markdown format:\n\n```\n# <Concise title describing the work done>\n\n## Task Summary\n[2-4 sentences summarizing what was accomplished]\n\n## Changed Files\n[List files changed with brief description of each change. Use `git diff --name-status` if available]\n\n## Key Decisions\n[Bullet points of technical decisions made during the session]\n\n## Test Results\n[Test execution results, or 'N/A' if no tests were run]\n\n## Remaining Issues\n[Follow-up work, TODOs, known issues. 'None' if everything is complete]\n```\n\n2. Save it by running this exact command (replace the content between EOF markers with your generated report):\n\n```bash\n${CLAUDE_PLUGIN_ROOT}/hooks/save-report-to-obsidian.sh <<'REPORT_EOF'\n<your generated report markdown here>\nREPORT_EOF\n```\n\n3. After the script runs, output a message containing '[REPORT_SAVED]' to confirm.\n\n4. Then you may end the session.\n---"
+          }
+        ]
+      }
+    ]
+  }
+}
