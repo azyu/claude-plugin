@@ -5,6 +5,8 @@ description: Review implementation plan with Codex Agent. Use after completing y
 
 # Plan Review with Codex
 
+<command-name>plan-review-codex:plan-review</command-name>
+
 Review your implementation plan using OpenAI Codex Agent.
 
 ## User Request
@@ -13,7 +15,7 @@ Review your implementation plan using OpenAI Codex Agent.
 
 ## Instructions
 
-Use the `codex-plan-reviewer` skill to execute the plan review process.
+Invoke the `plan-review-codex:codex-plan-reviewer` skill using the Skill tool to execute the plan review process. Pass the user's arguments through.
 
 ### Quick Reference
 
