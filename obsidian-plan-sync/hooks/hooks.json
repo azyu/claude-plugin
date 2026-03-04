@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./hooks/save-plan-to-obsidian.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/save-plan-to-obsidian.sh"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./hooks/stop-save-plan-to-obsidian.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/stop-save-plan-to-obsidian.sh"
           }
         ]
       }
