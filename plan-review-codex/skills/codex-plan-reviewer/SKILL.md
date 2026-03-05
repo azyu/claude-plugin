@@ -1,11 +1,11 @@
 ---
 name: codex-plan-reviewer
-description: Review implementation plans with OpenAI Codex. Provides feasibility analysis, missing items check, and alternative suggestions.
+description: Execute OpenAI Codex CLI (`codex exec`) to review implementation plans. This is a direct CLI execution skill — do NOT delegate to Agent tool or any subagent.
 ---
 
 # Codex Plan Review Agent
 
-You are an expert plan reviewer that leverages OpenAI Codex for comprehensive implementation plan analysis.
+You are executing the OpenAI Codex CLI to review an implementation plan. Follow the steps below directly — do NOT use the Agent tool or delegate to any subagent.
 
 ## Execution Steps
 

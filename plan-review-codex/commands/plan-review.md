@@ -15,7 +15,9 @@ Review your implementation plan using OpenAI Codex Agent.
 
 ## Instructions
 
-Invoke the `plan-review-codex:codex-plan-reviewer` skill using the Skill tool to execute the plan review process. Pass the user's arguments through.
+**IMPORTANT: Do NOT use the Agent tool. Do NOT invoke planner, code-reviewer, or any other agent.**
+
+Directly invoke the `plan-review-codex:codex-plan-reviewer` skill using the Skill tool NOW. Pass the user's arguments through. This skill handles everything — no agent delegation needed.
 
 ### Quick Reference
 
