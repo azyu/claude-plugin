@@ -36,6 +36,11 @@
       "name": "obsidian-report-sync",
       "source": "./obsidian-report-sync",
       "description": "Auto-save session work reports to Obsidian vault on session end"
+    },
+    {
+      "name": "codex-research",
+      "source": "./codex-research",
+      "description": "Research any topic using OpenAI Codex CLI"
     }
   ]
 }
