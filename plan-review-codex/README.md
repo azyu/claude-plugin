@@ -43,7 +43,7 @@ Review the latest plan file with Codex.
 /plan-review-codex:plan-review -f ~/.claude/plans/my-plan.md
 
 # Use different Codex model
-/plan-review-codex:plan-review -m gpt-4.5-codex
+/plan-review-codex:plan-review -m gpt-5.4
 ```
 
 ## Review Perspectives
