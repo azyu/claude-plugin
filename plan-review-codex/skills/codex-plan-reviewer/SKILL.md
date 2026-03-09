@@ -55,7 +55,7 @@ Build and execute the review command:
 ```bash
 MODEL="${MODEL:-gpt-5.4}"
 REASONING_FLAG=""
-[[ "$MODEL" == "gpt-5.4" ]] && REASONING_FLAG="-c model_reasoning_effort=xhigh"
+[[ "$MODEL" == "gpt-5.4" ]] && REASONING_FLAG="-c model_reasoning_effort=high"
 
 PROMPT="Please provide a comprehensive review of the following implementation plan:
 

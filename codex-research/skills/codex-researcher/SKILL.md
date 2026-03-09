@@ -67,7 +67,7 @@ command -v codex &>/dev/null || { echo "Error: OpenAI Codex CLI not installed. T
 
 ```bash
 REASONING_FLAG=""
-[[ "$MODEL" == "gpt-5.3-codex" ]] && REASONING_FLAG="-c model_reasoning_effort=xhigh"
+[[ "$MODEL" == "gpt-5.4" ]] && REASONING_FLAG="-c model_reasoning_effort=high"
 
 if [[ "$DEEP_MODE" == true ]]; then
   DEPTH_INSTRUCTION="Perform an exhaustive deep-dive analysis. Cover history, current state, future trends, key players, trade-offs, and lesser-known insights. Be thorough and comprehensive."
