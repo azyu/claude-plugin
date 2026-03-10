@@ -13,13 +13,5 @@
     "project-management",
     "semantic-search",
     "qmd"
-  ],
-  "dependencies": {
-    "required": {
-      "python": ">=3.8"
-    },
-    "optional": {
-      "qmd": "Enables semantic search capabilities"
-    }
-  }
+  ]
 }

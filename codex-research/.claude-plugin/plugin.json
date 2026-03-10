@@ -12,10 +12,5 @@
     "codex",
     "analysis",
     "report"
-  ],
-  "dependencies": {
-    "required": {
-      "@openai/codex": ">=0.1.0"
-    }
-  }
+  ]
 }
