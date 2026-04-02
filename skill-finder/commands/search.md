@@ -1,4 +1,5 @@
 ---
+name: search
 description: Analyzes the project and searches for relevant AI skills
 ---
 

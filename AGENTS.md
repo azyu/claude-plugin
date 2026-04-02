@@ -24,13 +24,13 @@ claude-plugin/
 ├── skill-finder/                # Plugin: AI skill search
 │   ├── .claude-plugin/
 │   │   └── plugin.json          # Plugin metadata
-│   ├── skills/skill-finder/
+│   ├── skills/search-skill/
 │   │   └── SKILL.md             # Main skill definition
 │   └── CLAUDE.md
 ├── plan-review-codex/           # Plugin: Codex plan review
 │   ├── .claude-plugin/
 │   │   └── plugin.json          # Plugin metadata
-│   ├── skills/codex-review/
+│   ├── skills/codex-plan-reviewer/
 │   │   └── SKILL.md             # Codex review skill
 │   ├── commands/
 │   │   └── plan-review.md       # /plan-review-codex:plan-review command
