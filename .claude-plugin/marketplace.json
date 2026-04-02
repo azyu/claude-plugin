@@ -8,11 +8,6 @@
       "description": "Analyze projects, search for AI skills, and install them"
     },
     {
-      "name": "plan-review-codex",
-      "source": "./plan-review-codex",
-      "description": "Review implementation plans with OpenAI Codex Agent"
-    },
-    {
       "name": "context-manager",
       "source": "./context-manager",
       "description": "Intelligent project context management with semantic search. Automatically discovers, loads, and updates .context/ documentation."
@@ -36,11 +31,6 @@
       "name": "obsidian-report-sync",
       "source": "./obsidian-report-sync",
       "description": "Auto-save session work reports to Obsidian vault on session end"
-    },
-    {
-      "name": "codex-research",
-      "source": "./codex-research",
-      "description": "Research any topic using OpenAI Codex CLI"
     },
     {
       "name": "obsidian-session-log",

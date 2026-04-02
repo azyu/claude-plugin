@@ -6,14 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Claude Code plugin marketplace containing plugins:
 - **skill-finder**: Analyzes projects and searches for relevant AI skills from curated sources
-- **plan-review-codex**: Reviews implementation plans with OpenAI Codex Agent
 - **context-manager**: Intelligent project context management with semantic search
 - **update-claude**: Learn from mistakes and update CLAUDE.md with preventive rules
 - **prompt-engineer**: Create, optimize, debug, and analyze prompts with proven patterns and frameworks
 - **obsidian-plan-sync**: Automatically saves plans to Obsidian vault on Plan Mode exit
 - **obsidian-report-sync**: Automatically saves session work reports to Obsidian vault
 - **obsidian-session-log**: Automatically logs session summaries to Obsidian vault on session end
-- **codex-research**: Research any topic using OpenAI Codex CLI
 
 ## Architecture
 
@@ -26,15 +24,6 @@ claude-plugin/
 │   │   └── plugin.json          # Plugin metadata
 │   ├── skills/search-skill/
 │   │   └── SKILL.md             # Main skill definition
-│   └── CLAUDE.md
-├── plan-review-codex/           # Plugin: Codex plan review
-│   ├── .claude-plugin/
-│   │   └── plugin.json          # Plugin metadata
-│   ├── skills/codex-plan-reviewer/
-│   │   └── SKILL.md             # Codex review skill
-│   ├── commands/
-│   │   └── plan-review.md       # /plan-review-codex:plan-review command
-│   ├── README.md
 │   └── CLAUDE.md
 ├── context-manager/             # Plugin: Context management
 │   ├── .claude-plugin/
@@ -105,14 +94,6 @@ claude-plugin/
 │   ├── scripts/
 │   │   └── session-end.sh         # Background worker: AI summary + obsidian CLI
 │   └── CLAUDE.md
-├── codex-research/                # Plugin: Codex topic research
-│   ├── .claude-plugin/
-│   │   └── plugin.json
-│   ├── commands/
-│   │   └── research.md            # /codex-research:research
-│   ├── skills/codex-researcher/
-│   │   └── SKILL.md               # Codex research instructions
-│   └── CLAUDE.md
 ├── README.md
 ├── CLAUDE.md → AGENTS.md          # Symlink
 └── AGENTS.md
@@ -141,16 +122,6 @@ The skill-finder plugin searches:
 4. Ask user which skill to install (AskUserQuestion)
 5. Ask installation scope (project or user)
 6. Execute installation via git clone
-
-### plan-review-codex Workflow
-
-1. Auto-detect latest plan from `~/.claude/plans/` (or specify with `-f`)
-2. Send plan to OpenAI Codex CLI
-3. Receive comprehensive review:
-   - Feasibility analysis
-   - Missing items check
-   - Alternative suggestions
-4. User updates plan based on feedback
 
 ### context-manager Workflow
 
@@ -202,13 +173,6 @@ The skill-finder plugin searches:
 4. Worker가 claude CLI(sonnet)로 AI 요약 생성 (실패 시 jq fallback)
 5. obsidian CLI로 `{FOLDER_PREFIX}/{project}/history/{YYYY-MM-DD}.md`에 append/create
 6. macOS toast 알림으로 결과 표시
-
-### codex-research Workflow
-
-1. `/codex-research:research <topic>` 명령 실행
-2. OpenAI Codex CLI에 리서치 요청 전달
-3. Codex가 토픽에 대한 종합 리서치 수행
-4. 구조화된 리서치 리포트 반환
 
 ## Multi-Agent Coordination
 

@@ -11,7 +11,6 @@ Claude Code 플러그인 마켓플레이스. AI 코딩 에이전트의 생산성
 | Plugin System | Markdown (SKILL.md, commands/*.md) | Claude Code 네이티브 플러그인 포맷, 빌드 불필요 |
 | Hook Scripts | Bash (sh) | 크로스 플랫폼 셸 호환, 경량 |
 | Utility Scripts | Python 3 | context-manager의 시맨틱 검색, qmd 인덱싱 |
-| External CLI | OpenAI Codex CLI | plan-review-codex, codex-research에서 사용 |
 | Obsidian Integration | notesmd-cli, Obsidian REST API | 3개 Obsidian 플러그인에서 사용 |
 | Version Control | Git | 마켓플레이스 배포 및 협업 |
 
@@ -43,14 +42,12 @@ Claude Code 플러그인 마켓플레이스. AI 코딩 에이전트의 생산성
 | Plugin | Version | Type | Key Feature |
 |--------|---------|------|-------------|
 | skill-finder | 1.0.0 | Skill | AI 스킬 검색 및 설치 |
-| plan-review-codex | 1.1.0 | Skill + Command | Codex로 플랜 리뷰 |
 | context-manager | 1.0.0 | Skill + Command + Hook | 시맨틱 컨텍스트 관리 |
 | update-claude | 1.0.0 | Skill + Command | 실수로부터 학습 → CLAUDE.md 업데이트 |
 | prompt-engineer | 1.0.0 | Skill + Command | CRAFT 프레임워크 프롬프트 최적화 |
 | obsidian-plan-sync | 1.0.0 | Hook | Plan Mode 종료 시 Obsidian 저장 |
 | obsidian-report-sync | 1.0.0 | Hook | 세션 리포트 Obsidian 저장 |
 | obsidian-session-log | 1.0.0 | Hook | 세션 요약 Obsidian 로그 |
-| codex-research | 1.0.0 | Skill + Command | Codex CLI로 토픽 리서치 |
 
 ## Key References
 
