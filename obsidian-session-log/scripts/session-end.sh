@@ -93,9 +93,18 @@ mkdir -p "$LOG_DIR"
   fi
 
   if ! pgrep -xq "Obsidian" 2>/dev/null; then
-    notify "Obsidian not running — session log skipped" "Claude Code" "Basso"
-    echo "[$(date)] ABORT: Obsidian not running"
-    exit 0
+    echo "[$(date)] Obsidian not running, launching..."
+    open -a "Obsidian" --background 2>/dev/null
+    for i in $(seq 1 15); do
+      pgrep -xq "Obsidian" 2>/dev/null && break
+      sleep 1
+    done
+    if ! pgrep -xq "Obsidian" 2>/dev/null; then
+      notify "Obsidian failed to start — session log skipped" "Claude Code" "Basso"
+      echo "[$(date)] ABORT: Obsidian failed to start after 15s"
+      exit 0
+    fi
+    echo "[$(date)] Obsidian launched successfully"
   fi
 
   notify "Summarizing session for ${PROJECT_NAME}..." "Claude Code"

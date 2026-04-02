@@ -7,9 +7,10 @@ Claude Code plugin — 세션 종료 시 Obsidian vault에 자동으로 세션 �
 1. Claude Code 세션 종료 시 `SessionEnd` 훅이 `session-end.sh` 실행
 2. stdin으로 `session_id`, `transcript_path`, `cwd` 수신
 3. Main process가 stdin 읽고 즉시 background worker fork 후 exit 0
-4. Worker가 AI 요약 생성 (claude CLI, sonnet 모델) → fallback으로 jq 파싱
-5. `obsidian` CLI로 vault에 노트 append/create
-6. macOS toast 알림으로 결과 표시 (사용된 방식 포함)
+4. Obsidian.app 미실행 시 `open -a Obsidian --background`로 자동 실행 (최대 15초 대기)
+5. Worker가 AI 요약 생성 (claude CLI, sonnet 모델) → fallback으로 jq 파싱
+6. `obsidian` CLI로 vault에 노트 append/create
+7. macOS toast 알림으로 결과 표시 (사용된 방식 포함)
 
 ## 노트 저장 경로
 
@@ -47,3 +48,4 @@ OBSIDIAN_VAULT=""              # vault 이름 (비어있으면 CLI 기본 vault)
 - 암묵적 기본값 없음 — 설정 누락 시 명시적 에러
 - toast 알림에 사용 방식 표시 (obsidian append/create)
 - SessionEnd 훅은 즉시 exit — 무거운 작업은 background worker
+- Obsidian 미실행 시 자동 실행 (background, 최대 15초 polling 대기)
