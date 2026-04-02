@@ -41,6 +41,11 @@
       "name": "codex-research",
       "source": "./codex-research",
       "description": "Research any topic using OpenAI Codex CLI"
+    },
+    {
+      "name": "obsidian-session-log",
+      "source": "./obsidian-session-log",
+      "description": "Auto-log session summaries to Obsidian vault on session end"
     }
   ]
 }

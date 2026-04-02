@@ -1,0 +1,17 @@
+{
+  "description": "Session end hook to create Obsidian session log note",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/session-end.sh\"",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -12,6 +12,7 @@ This is a Claude Code plugin marketplace containing plugins:
 - **prompt-engineer**: Create, optimize, debug, and analyze prompts with proven patterns and frameworks
 - **obsidian-plan-sync**: Automatically saves plans to Obsidian vault on Plan Mode exit
 - **obsidian-report-sync**: Automatically saves session work reports to Obsidian vault
+- **obsidian-session-log**: Automatically logs session summaries to Obsidian vault on session end
 
 ## Architecture
 
@@ -95,6 +96,14 @@ claude-plugin/
 │   │   ├── _lib.sh                # Shared save utilities
 │   │   └── save-report-to-obsidian.sh
 │   └── CLAUDE.md
+├── obsidian-session-log/          # Plugin: Session → Obsidian log
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── hooks/
+│   │   └── hooks.json             # SessionEnd hook
+│   ├── scripts/
+│   │   └── session-end.sh         # Background worker: AI summary + obsidian CLI
+│   └── CLAUDE.md
 ├── README.md
 ├── CLAUDE.md → AGENTS.md          # Symlink
 └── AGENTS.md
@@ -175,6 +184,15 @@ The skill-finder plugin searches:
 4. Claude generates structured report → runs `save-report-to-obsidian.sh`
 5. Report saved to `Report/<project>/<YYYYMMDD>_<title>.md`
 6. `[REPORT_SAVED]` marker → Stop hook re-fires → approves → session ends
+
+### obsidian-session-log Workflow
+
+1. Claude Code 세션 종료 → SessionEnd 훅 실행
+2. stdin에서 session_id, transcript_path, cwd 수신
+3. Background worker fork 후 main process 즉시 exit
+4. Worker가 claude CLI(sonnet)로 AI 요약 생성 (실패 시 jq fallback)
+5. obsidian CLI로 `{FOLDER_PREFIX}/{project}/history/{YYYY-MM-DD}.md`에 append/create
+6. macOS toast 알림으로 결과 표시
 
 ## Plugin Development
 
