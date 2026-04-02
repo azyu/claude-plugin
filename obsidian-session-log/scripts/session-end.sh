@@ -95,7 +95,7 @@ mkdir -p "$LOG_DIR"
   if ! pgrep -xq "Obsidian" 2>/dev/null; then
     echo "[$(date)] Obsidian not running, launching..."
     open -a "Obsidian" --background 2>/dev/null
-    for i in $(seq 1 15); do
+    for _ in $(seq 1 15); do
       pgrep -xq "Obsidian" 2>/dev/null && break
       sleep 1
     done
@@ -110,9 +110,9 @@ mkdir -p "$LOG_DIR"
   notify "Summarizing session for ${PROJECT_NAME}..." "Claude Code"
 
   # ── Build vault parameter ───────────────────────
-  VAULT_PARAM=""
+  VAULT_ARGS=()
   if [[ -n "$OBSIDIAN_VAULT" ]]; then
-    VAULT_PARAM="vault=\"${OBSIDIAN_VAULT}\""
+    VAULT_ARGS+=("vault=${OBSIDIAN_VAULT}")
   fi
 
   # ── Generate summary ─────────────────────────────
@@ -243,11 +243,11 @@ PROMPT
   fi
 
   if [[ -z "$SUMMARY" ]]; then
-    local no_transcript_msg="- (transcript 없음 — 메타데이터만 기록)"
+    no_transcript_msg="- (transcript 없음 — 메타데이터만 기록)"
     if [[ "$LANG_SUMMARY" == "en" ]]; then
       no_transcript_msg="- (no transcript — metadata only)"
     fi
-    local header="### 요약"
+    header="### 요약"
     if [[ "$LANG_SUMMARY" == "en" ]]; then
       header="### Summary"
     fi
@@ -302,11 +302,7 @@ PROMPT
   # Try append first (file may already exist)
   escaped_block=$(escape_for_obsidian "$SESSION_BLOCK")
 
-  if [[ -n "$VAULT_PARAM" ]]; then
-    cli_out=$("$OBSIDIAN_BIN" append path="$NOTE_REL_PATH" content="$escaped_block" ${VAULT_PARAM} silent 2>&1)
-  else
-    cli_out=$("$OBSIDIAN_BIN" append path="$NOTE_REL_PATH" content="$escaped_block" silent 2>&1)
-  fi
+  cli_out=$("$OBSIDIAN_BIN" append path="$NOTE_REL_PATH" content="$escaped_block" "${VAULT_ARGS[@]}" silent 2>&1)
 
   if [[ "$cli_out" != *"Error:"* ]]; then
     write_method="obsidian append"
@@ -318,11 +314,7 @@ PROMPT
     NEW_CONTENT=$(build_new_note)
     escaped_new=$(escape_for_obsidian "$NEW_CONTENT")
 
-    if [[ -n "$VAULT_PARAM" ]]; then
-      cli_out=$("$OBSIDIAN_BIN" create path="$NOTE_REL_PATH" content="$escaped_new" ${VAULT_PARAM} silent 2>&1)
-    else
-      cli_out=$("$OBSIDIAN_BIN" create path="$NOTE_REL_PATH" content="$escaped_new" silent 2>&1)
-    fi
+    cli_out=$("$OBSIDIAN_BIN" create path="$NOTE_REL_PATH" content="$escaped_new" "${VAULT_ARGS[@]}" silent 2>&1)
 
     if [[ "$cli_out" != *"Error:"* ]]; then
       write_method="obsidian create"
