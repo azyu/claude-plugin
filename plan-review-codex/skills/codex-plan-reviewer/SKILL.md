@@ -14,6 +14,7 @@ You are executing the OpenAI Codex CLI to review an implementation plan. Follow 
 Check `$ARGUMENTS` for options:
 - `-f <file>` or `--file <file>`: Use specified plan file
 - `-m <model>` or `--model <model>`: Use different Codex model (default: gpt-5.4)
+- `-r <effort>` or `--reasoning <effort>`: Set reasoning effort (default: high)
 - First positional argument: Treat as file path
 
 ### Step 2: Detect Plan File
@@ -54,8 +55,16 @@ Build and execute the review command:
 
 ```bash
 MODEL="${MODEL:-gpt-5.4}"
-REASONING_FLAG=""
-[[ "$MODEL" == "gpt-5.4" ]] && REASONING_FLAG="-c model_reasoning_effort=high"
+
+# Default reasoning effort per model (override with -r flag)
+if [[ -z "$REASONING" ]]; then
+  case "$MODEL" in
+    gpt-5.4*) REASONING="high" ;;
+    *)        REASONING="medium" ;;
+  esac
+fi
+
+REASONING_FLAG="-c model_reasoning_effort=$REASONING"
 
 PROMPT="Please provide a comprehensive review of the following implementation plan:
 

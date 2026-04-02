@@ -24,3 +24,4 @@ Directly invoke the `plan-review-codex:codex-plan-reviewer` skill using the Skil
 - `/plan-review-codex:plan-review` - Auto-detect latest plan from ~/.claude/plans/
 - `/plan-review-codex:plan-review -f <path>` - Review specific plan file
 - `/plan-review-codex:plan-review -m <model>` - Use different Codex model
+- `/plan-review-codex:plan-review -r <effort>` - Set reasoning effort (default: high)
