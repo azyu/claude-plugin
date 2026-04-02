@@ -13,6 +13,7 @@ This is a Claude Code plugin marketplace containing plugins:
 - **obsidian-plan-sync**: Automatically saves plans to Obsidian vault on Plan Mode exit
 - **obsidian-report-sync**: Automatically saves session work reports to Obsidian vault
 - **obsidian-session-log**: Automatically logs session summaries to Obsidian vault on session end
+- **codex-research**: Research any topic using OpenAI Codex CLI
 
 ## Architecture
 
@@ -104,6 +105,14 @@ claude-plugin/
 │   ├── scripts/
 │   │   └── session-end.sh         # Background worker: AI summary + obsidian CLI
 │   └── CLAUDE.md
+├── codex-research/                # Plugin: Codex topic research
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── commands/
+│   │   └── research.md            # /codex-research:research
+│   ├── skills/codex-researcher/
+│   │   └── SKILL.md               # Codex research instructions
+│   └── CLAUDE.md
 ├── README.md
 ├── CLAUDE.md → AGENTS.md          # Symlink
 └── AGENTS.md
@@ -193,6 +202,37 @@ The skill-finder plugin searches:
 4. Worker가 claude CLI(sonnet)로 AI 요약 생성 (실패 시 jq fallback)
 5. obsidian CLI로 `{FOLDER_PREFIX}/{project}/history/{YYYY-MM-DD}.md`에 append/create
 6. macOS toast 알림으로 결과 표시
+
+### codex-research Workflow
+
+1. `/codex-research:research <topic>` 명령 실행
+2. OpenAI Codex CLI에 리서치 요청 전달
+3. Codex가 토픽에 대한 종합 리서치 수행
+4. 구조화된 리서치 리포트 반환
+
+## Multi-Agent Coordination
+
+Before starting any task:
+
+1. Read `.context/TASKS.md` — check what needs to be done and what's already claimed
+2. Read `.context/STEERING.md` — understand current priorities, constraints, and execution mode
+3. Update `.context/TASKS.md` — mark your task as `[~]` in progress with your agent name
+4. On completion — mark task as `[x]` and commit
+
+### File Purposes
+
+| File | Purpose |
+|------|---------|
+| `.context/TASKS.md` | Shared task tracker — who does what |
+| `.context/STEERING.md` | Project direction, priorities, and execution mode |
+
+### Storage Mode
+
+`.context/` is a symlink into the Obsidian vault (`20_Project/claude-plugin/.context/`). It is NOT tracked by git.
+
+### Execution Mode
+
+File-based coordination. Sequential work with 1-2 agents, async collaboration via `.context/` files.
 
 ## Plugin Development
 
