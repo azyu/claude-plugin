@@ -7,12 +7,12 @@ A collection of plugins for Claude Code.
 | Plugin | Description |
 |--------|-------------|
 | [skill-finder](./skill-finder) | Analyze projects, search for AI skills, and install them |
-| [plan-review-codex](./plan-review-codex) | Review implementation plans with OpenAI Codex Agent |
 | [context-manager](./context-manager) | Intelligent project context management with semantic search |
 | [update-claude](./update-claude) | Learn from mistakes and update CLAUDE.md with preventive rules |
 | [prompt-engineer](./prompt-engineer) | Create, optimize, debug, and analyze prompts with proven patterns and frameworks |
 | [obsidian-plan-sync](./obsidian-plan-sync) | Automatically save plans to Obsidian vault on Plan Mode exit |
 | [obsidian-report-sync](./obsidian-report-sync) | Automatically save session work reports to Obsidian vault |
+| [obsidian-session-log](./obsidian-session-log) | Automatically log session summaries to Obsidian vault on session end |
 
 ## Installation
 
@@ -81,27 +81,6 @@ npx add-skill sickn33/antigravity-awesome-skills --skill code-quality
 ### Example & Screenshots
 
 <img width="1000" height="460" alt="2026-01-23" src="https://github.com/user-attachments/assets/41783008-4d9d-44fd-95d0-e8a58fb7166d" />
-
-## plan-review-codex Usage
-
-```bash
-/plan-review-codex:plan-review                                # Auto-detect latest plan from ~/.claude/plans/
-/plan-review-codex:plan-review -f ~/.claude/plans/my-plan.md  # Specify plan file
-/plan-review-codex:plan-review -m o3                          # Use different Codex model
-```
-
-### Review Perspectives
-
-1. **Feasibility** - Is it technically achievable? Any potential issues?
-2. **Missing Items** - Are there any missing steps or considerations?
-3. **Alternatives** - Are there better approaches or improvements?
-
-### Workflow
-
-1. Complete plan in Plan mode
-2. Run `/plan-review-codex:plan-review` to request Codex review
-3. Update plan based on feedback
-4. Request user approval with ExitPlanMode
 
 ## context-manager Usage
 
@@ -244,6 +223,43 @@ One of the following save methods:
 | Obsidian REST API | `OBSIDIAN_API_KEY` + `OBSIDIAN_API_URL` env vars |
 | `notesmd-cli` | `brew install notesmd-cli` |
 | Direct file write | Obsidian vault at default iCloud path |
+
+## obsidian-session-log
+
+Automatically summarizes each Claude Code session and logs it to Obsidian on session end.
+
+### How It Works
+
+1. Session ends → **SessionEnd** hook runs `session-end.sh`
+2. Main process reads stdin, forks background worker, exits immediately
+3. Worker generates AI summary (claude CLI with sonnet) or falls back to jq extraction
+4. Appends to `{FOLDER_PREFIX}/{project}/history/{YYYY-MM-DD}.md` via `obsidian` CLI
+5. macOS toast notification shows result
+
+### Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/azyu/claude-plugin/main/install_obsidian-session-log.sh | bash
+```
+
+### Configuration
+
+`~/.claude/obsidian-session-log.conf`:
+
+```bash
+FOLDER_PREFIX="20_Project"    # Required — Obsidian vault folder prefix
+LANG_SUMMARY="ko"             # Optional: ko | en (default: ko)
+OBSIDIAN_VAULT=""              # Optional: vault name (default: CLI default)
+```
+
+### Requirements
+
+| Dependency | Required | Notes |
+|------------|----------|-------|
+| `obsidian` CLI | Yes | [Obsidian CLI](https://help.obsidian.md/cli) |
+| `jq` | Yes | JSON parsing + fallback summary |
+| `claude` CLI | No | AI summary; falls back to jq if missing |
+| Obsidian.app | Yes | Auto-launched if not running |
 
 ## License
 
